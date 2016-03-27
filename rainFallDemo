@@ -1,0 +1,62 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package rainfall;
+
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Tutor
+ */
+public class rainFallDemo {
+
+    public static void main(String[] args) {
+
+        final int years = 12;
+
+        double[] rainFallD = new double[years];
+       
+        getData(rainFallD);
+
+        RainFall rainfallData = new RainFall(rainFallD);
+
+        DecimalFormat values = new DecimalFormat("#0.00");
+
+        System.out.println("The total rain is " + values.format(rainfallData.getTotal()));
+        System.out.println("The average is " + values.format(rainfallData.getAverage()));
+        System.out.println("The highest rain is " + values.format(rainfallData.getHighest()));
+        System.out.println("The lowest is " + values.format(rainfallData.getLowest()));
+
+        System.exit(0);
+
+    }
+
+    public static void getData(double[] rArray) {
+         String[] months = {"January", "February", "March",
+        "April", "May", "June",
+        "July", "August", "September",
+        "October", "November", "December"};
+
+
+        Scanner keyboard = new Scanner(System.in);
+
+        for (int index = 0; index  < rArray.length; index ++) {
+
+            System.out.println("What was the amount of rain for " + months[index]  + "?");
+
+            rArray[index ] = keyboard.nextDouble();
+
+            while (rArray[index ] < 0) {
+                System.out.print(" Invalid input. You entered a negative number. Enter a"
+                        + "value that is greater than zero");
+                rArray[index ] = keyboard.nextDouble();
+
+            }
+        }
+    }
+
+}
